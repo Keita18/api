@@ -8,7 +8,7 @@ class Player : JPanel() {
     internal var y: Int = 0
 
     init {
-        this.background = Color.getHSBColor(0.3f, 0.3f, 1f)
+        this.background = Color.RED
         this.setSize(Labyrinth.panelSize, Labyrinth.panelSize)
     }
 
@@ -40,8 +40,6 @@ class Player : JPanel() {
         }
     }
 }
-
-
 
 class Exit : JPanel() {
 

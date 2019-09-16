@@ -115,6 +115,7 @@ class MazeAutoSolve {
 
             if (maze[y][x] == 0) {
                 maze[y][x] = 2
+               // System.out.println(Arrays.deepToString(maze))
 
                 var dx = -1
                 var dy = 0

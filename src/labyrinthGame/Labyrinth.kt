@@ -1,7 +1,6 @@
 package labyrinthGame
 
 import java.awt.Color
-import java.awt.Graphics
 import java.awt.event.KeyEvent
 import java.awt.event.KeyListener
 import java.awt.event.WindowAdapter
@@ -16,8 +15,6 @@ import javax.swing.JPanel
 class Labyrinth internal constructor(str: String) : JFrame() {
     private var p: Player = Player()
     private var exit: Exit = Exit()
-
-
 
     init {
         loadMap(str)
@@ -86,10 +83,9 @@ class Labyrinth internal constructor(str: String) : JFrame() {
 
         this.setLocationRelativeTo(null)
         drawMaze()
-        System.out.println(Arrays.deepToString(map))
+        //System.out.println(Arrays.deepToString(map))
         this.isVisible = true
     }
-
 
     private fun drawMaze(){
         //Create player
@@ -100,8 +96,6 @@ class Labyrinth internal constructor(str: String) : JFrame() {
         exit = Exit()
         exit.isVisible = true
         this.add(exit)
-
-
 
         p.setLocation(0 * panelSize + 23, 0 * panelSize + 25)
         p.y = 0
@@ -126,11 +120,8 @@ class Labyrinth internal constructor(str: String) : JFrame() {
                 tile.isVisible = true
                 this.add(tile)
             }
-            //  System.out.println(Arrays.deepToString(map));
         }
-
     }
-
 
     private fun loadMap(str: String) {
         try {
@@ -166,7 +157,6 @@ class Labyrinth internal constructor(str: String) : JFrame() {
         } catch (e: Exception) {
             println("Unable to load existing map(if exists), creating new map.")
         }
-
     }
 
     companion object {
@@ -183,5 +173,4 @@ class Labyrinth internal constructor(str: String) : JFrame() {
             App()
         }
     }
-
 }

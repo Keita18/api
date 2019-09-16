@@ -14,8 +14,9 @@ import javax.swing.JFrame
 import javax.swing.JOptionPane
 import javax.swing.JPanel
 
-
-class BlocMakerTile(internal var x: Int, internal var y: Int): JPanel(){
+private class BlocMakerTile(internal val x: Int,
+                            internal val y: Int,
+                            val map: Array<IntArray> = Array(20) { IntArray(20) }): JPanel(){
 
      init {
 
@@ -23,11 +24,11 @@ class BlocMakerTile(internal var x: Int, internal var y: Int): JPanel(){
              override fun mousePressed(e: MouseEvent?) {
                  if (e!!.button == MouseEvent.BUTTON1) {
                      background = Color.GREEN
-                     LabyrinthBlocMaker.map[x][y] = 0
+                     map[x][y] = 0
                  }
                  if (e.button == MouseEvent.BUTTON3) {
                      background = Color.ORANGE
-                     LabyrinthBlocMaker.map[x][y] = 9
+                     map[x][y] = 9
                  }
 
              }
@@ -39,6 +40,10 @@ class LabyrinthBlocMaker: JFrame() { private val panelSize = 25
     private val mapList = ArrayList<String>()
     private var level = 0
     private var levelsExistAlready = false
+
+    private val rows = 20
+    private val columns = 20
+    private val map = Array(columns) { IntArray(rows) }
 
     init {
         getMapList()
@@ -58,10 +63,10 @@ class LabyrinthBlocMaker: JFrame() { private val panelSize = 25
             })
 
             this.setLocationRelativeTo(null)
-
+            //color the maze map maker
             for (y in 0 until columns) {
                 for (x in 0 until rows) {
-                    val tile = BlocMakerTile(x, y)
+                    val tile = BlocMakerTile(x, y, map)
                     tile.setSize(panelSize - 1, panelSize - 1)
                     tile.setLocation(x * panelSize + 23, y * panelSize + 25)
                     if (x == 0 && y == 0)
@@ -92,7 +97,6 @@ class LabyrinthBlocMaker: JFrame() { private val panelSize = 25
             }
         }
     }
-
 
     private fun getLevelChoice() {
         if (levelsExistAlready) {
@@ -128,7 +132,6 @@ class LabyrinthBlocMaker: JFrame() { private val panelSize = 25
                 }
                 writer.print("\r\n")
             }
-            println(writer)
             writer.close()
         } catch (e: Exception) {
             e.printStackTrace()
@@ -178,23 +181,5 @@ class LabyrinthBlocMaker: JFrame() { private val panelSize = 25
 
     }
 
-    companion object {
-        private const val rows = 20
-        private const val columns = 20
-        internal var map = Array(columns) { IntArray(rows) }
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

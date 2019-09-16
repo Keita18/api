@@ -10,10 +10,8 @@ class App {
     private var start = JButton("Play")
     private var exit = JButton("Exit")
     private var mapMaker = JButton("Map Maker")
-    private var picture = ImageIcon("res/Images/MazePicture.png")
-    private var imageLabel = JLabel(picture)
     private var mapList = ArrayList<String>()
-    var lvlList: JComboBox<String>
+    private var lvlList: JComboBox<String>
     private var menuWidth = 100 //Width of each button/item on display
     private var menuHeight = 30//Height of each button/item on display
     private var menuY = 460 //Button/item location on display
@@ -61,10 +59,7 @@ class App {
         Menu.add(exit)
         exit.addActionListener { System.exit(0) }
 
-        //Display Picture
-        imageLabel.setBounds((width - 412) / 2, 25, 412, 412)
-        imageLabel.isVisible = true
-        Menu.add(imageLabel)
+        //Display Menu
         Menu.isVisible = true
     }
 
@@ -74,13 +69,8 @@ class App {
             if (map.exists()) {
                 println("Level $i exists")
                 mapList.add("Level $i.map")
-                levelsExistAlready = true
             }
         }
     }
 
-    companion object {
-
-        internal var levelsExistAlready = false
-    }
 }
